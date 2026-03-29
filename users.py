@@ -54,8 +54,7 @@ def view_users():
 
 
 def update_user():
-    print("
-  UPDATE USER  ")
+    print("UPDATE USER")
 
     conn = mysql.connector.connect(
         host="",
@@ -72,14 +71,12 @@ def update_user():
         conn.close()
         return
 
-    print("
- available users:")
+    print("available users:")
     for user in users:
         print(f"  ID: {user[0]} | NAME: {user[1]} | SKILLS: {user[2]}")
 
     try:
-        user_id = int(input("
- enter user ID to update: "))
+        user_id = int(input("enter user ID to update: "))
     except ValueError:
         conn.close()
         return
@@ -91,8 +88,7 @@ def update_user():
         conn.close()
         return
 
-    print(f"
- updating user: {user[1]}")
+    print(f"\nUPDATING USER: {user[1]}")
     new_name = input(f" enter new name (leave blank to keep '{user[1]}'): ").strip()
     new_skills = input(f" enter new skills (leave blank to keep '{user[2]}'): ").strip()
 

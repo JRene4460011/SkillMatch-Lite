@@ -1,17 +1,30 @@
 from database import get_connection
 
 def add_job():
+    print("\nADD NEW JOB")
     title = input("Enter job title: ")
-    skills = input("Enter required skills (separated by comma): ")
+    required_skills = input("Enter required skills (separated by comma): ")
+
+    # Ensuring that we don't get empty input for both fields (the title and the required skills).
+    if not title or not required_skills:
+        print("Title and required skills cannot be empty.")
+        return
 
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("INSERT INTO jobs (title, required_skills) VALUES (%s, %s)", (title, skills))
+    try:
+        # Insert the new job into the jobs table
+        cursor.execute("INSERT INTO jobs (title, required_skills) VALUES (%s, %s)", (title, required_skills))
+        conn.commit()
+        print(f"\n{title} added successfully!")
 
-    conn.commit()
-    conn.close()
-    print("Job added successfully!\n") 
+    except Exception as e:
+        # We're print the error anytime there's a thing that goes wrong instead of crashing the entire program.
+        print(f"Something went wrong: {e}")
+    finally:
+        cursor.close()
+        conn.close()
 
 def view_jobs():
     print("\nALL AVAILABLE JOBS")
@@ -38,14 +51,7 @@ def view_jobs():
         conn.close()
 
 def update_job():
-    pass
-
-def delete_job():
-    pass
-
-def update_job():
-    print("
-  UPDATE JOB  ")
+    print("UPDATE JOB")
 
     conn = mysql.connector.connect(
         host="",
@@ -62,14 +68,12 @@ def update_job():
         conn.close()
         return
 
-    print("
- available jobs:")
+    print("available jobs:")
     for job in jobs:
         print(f"  ID: {job[0]} | TITLE: {job[1]} | SKILLS: {job[2]}")
 
     try:
-        job_id = int(input("
- enter job ID to update: "))
+        job_id = int(input("enter job ID to update: "))
     except ValueError:
         conn.close()
         return
@@ -81,8 +85,7 @@ def update_job():
         conn.close()
         return
 
-    print(f"
- updating job: {job[1]}")
+    print(f"\nUPDATING JOB: {job[1]}")
     new_title = input(f" enter new title (leave blank to keep '{job[1]}'): ").strip()
     new_skills = input(f" enter new skills (leave blank to keep '{job[2]}'): ").strip()
 
@@ -95,3 +98,6 @@ def update_job():
     )
     conn.commit()
     conn.close()
+
+def delete_job():
+    pass
