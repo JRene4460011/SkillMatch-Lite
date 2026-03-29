@@ -100,4 +100,49 @@ def update_job():
     conn.close()
 
 def delete_job():
-    pass
+    print("\nDELETE JOB")
+    conn = get_connection()
+    cursor = conn.cursor()
+    try:
+        # Show all jobs so the person can pick which one to delete
+        cursor.execute("SELECT id, title, required_skills FROM jobs")
+        jobs = cursor.fetchall()
+
+        if not jobs:
+            print("No jobs found.")
+            return
+
+        print("-" * 40)
+        for job in jobs:
+            print(f"  ID: {job[0]} | TITLE: {job[1]} | SKILLS: {job[2]}")
+        print("-" * 40)
+
+        try:
+            job_id = int(input("Enter job ID to delete: "))
+        except ValueError:
+            print("Invalid ID. Please enter a number.")
+            return
+
+        # Check that the job actually exists before trying to delete
+        cursor.execute("SELECT id, title FROM jobs WHERE id = %s", (job_id,))
+        job = cursor.fetchone()
+
+        if not job:
+            print(f"No job found with ID {job_id}.")
+            return
+
+        # Confirm before deleting
+        confirm = input(f"Are you sure you want to delete '{job[1]}'? (yes/no): ").strip().lower()
+        if confirm != "yes":
+            print("Deletion cancelled.")
+            return
+
+        cursor.execute("DELETE FROM jobs WHERE id = %s", (job_id,))
+        conn.commit()
+        print(f"Deleted job '{job[1]}' with ID {job_id}.")
+
+    except Exception as e:
+        print(f"Something went wrong: {e}")
+    finally:
+        cursor.close()
+        conn.close()
