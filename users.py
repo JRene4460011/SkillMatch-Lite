@@ -28,5 +28,29 @@ def add_user():
         cursor.close()
         conn.close()
 
+def view_users():
+    print("\nALL REGISTERED USERS")
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute("SELECT id, name, skills FROM users")
+        users = cursor.fetchall()
+
+        if not users:
+            print("No users found.")
+        else:
+            print("-" * 40)
+            print(f"{'ID':<5} {'Name':<20} {'Skills'}")
+            print("-" * 40)
+            for user in users:
+                print(f"{user[0]:<5} {user[1]:<20} {user[2]}")
+    except Exception as e:
+        print(f"Something went wrong: {e}")
+    finally:
+        cursor.close()
+        conn.close()
+
 if __name__ == "__main__":
     add_user()
