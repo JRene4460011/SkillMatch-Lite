@@ -1,7 +1,17 @@
 from database import get_connection
 
 def add_job():
-    pass  
+    title = input("Enter job title: ")
+    skills = input("Enter required skills (separated by comma): ")
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("INSERT INTO jobs (title, required_skills) VALUES (%s, %s)", (title, skills))
+
+    conn.commit()
+    conn.close()
+    print("Job added successfully!\n") 
 
 def view_jobs():
     print("\nALL AVAILABLE JOBS")
