@@ -51,6 +51,3 @@ def view_users():
     finally:
         cursor.close()
         conn.close()
-
-if __name__ == "__main__":
-    add_user()

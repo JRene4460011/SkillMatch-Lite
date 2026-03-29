@@ -1,10 +1,8 @@
 import os
 import sys
 import database
-from add_user import add_user
-from add_job import add_job
-from view_users import view_users
-from view_jobs import view_jobs
+from users import (add_user, view_users, update_user, delete_user)
+from jobs import (add_job, view_jobs, update_job, delete_job)
 from match import match_user
 
 # Clears the terminal screen to keep the interface clean between menu actions
@@ -21,12 +19,16 @@ def show_header():
 # Prints the list of available actions the user can choose from
 def show_menu():
     print("\n-- MAIN MENU --")
-    print("1. Add a user")
-    print("2. Add a job")
-    print("3. View all users")
-    print("4. View all jobs")
-    print("5. Match user to job")
-    print("6. Exit")
+    print("1.  Add User")
+    print("2.  View Users")
+    print("3.  Update User")
+    print("4.  Delete User")
+    print("5.  Add Job")
+    print("6.  View Jobs")
+    print("7.  Update Job")
+    print("8.  Delete Job")
+    print("9.  Match Skills")
+    print("10. Exit")
     print("-" * 30)
 
 # Sets up the database and retries if MySQL is not running yet
