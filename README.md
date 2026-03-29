@@ -9,10 +9,12 @@ The project we are working on supports  "companies to grow economically because 
 
 ## Technologies Used
 
-Technology and Purpose 
- Python:  Programming language 
- MySQL  Database for storing jobs and users
- WampServer  for Local MySQL server 
+ Python:  Programming language ,
+ 
+ MySQL  Database for storing jobs and users ,
+ 
+ WampServer  for Local MySQL server ,
+ 
 VS Code a code editor 
 
 ## Features
@@ -36,6 +38,6 @@ connect the database after
 
 cloning the repository.
 
-steps:       1.  git clone https://github.com/JRene4460011/SkillMatch-Lite.git
+steps:          1.  git clone https://github.com/JRene4460011/SkillMatch-Lite.git
                 2 . cd SkillMatch-Lite
                 3. python main.py
