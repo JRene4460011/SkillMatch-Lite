@@ -101,3 +101,43 @@ def update_user():
     )
     conn.commit()
     conn.close()
+    
+def delete_user():
+    print("\nDELETE USER")
+    conn = get_connection()
+    cursor = conn.cursor()
+    try:
+        # Show all users so the person can pick which one to delete
+        cursor.execute("SELECT id, name, skills FROM users")
+        users = cursor.fetchall()
+        if not users:
+            print("No users found.")
+            return
+        print("-" * 40)
+        for user in users:
+            print(f"  ID: {user[0]} | NAME: {user[1]} | SKILLS: {user[2]}")
+        print("-" * 40)
+        try:
+            user_id = int(input("Enter user ID to delete: "))
+        except ValueError:
+            print("Invalid ID. Please enter a number.")
+            return
+        # Check that the user actually exists before trying to delete
+        cursor.execute("SELECT id, name FROM users WHERE id = %s", (user_id,))
+        user = cursor.fetchone()
+        if not user:
+            print(f"No user found with ID {user_id}.")
+            return
+        # Confirm before deleting
+        confirm = input(f"Are you sure you want to delete '{user[1]}'? (yes/no): ").strip().lower()
+        if confirm != "yes":
+            print("Deletion cancelled.")
+            return
+        cursor.execute("DELETE FROM users WHERE id = %s", (user_id,))
+        conn.commit()
+        print(f"Deleted user '{user[1]}' with ID {user_id}.")
+    except Exception as e:
+        print(f"Something went wrong: {e}")
+    finally:
+        cursor.close()
+        conn.close()
