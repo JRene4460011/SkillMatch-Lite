@@ -14,7 +14,7 @@ def match_user():
        conn.close()
        return
     
-    cursor.execute("SELECT id, title, skills FROM jobs")
+    cursor.execute("SELECT id, title, required_skills FROM jobs")
     jobs = cursor.fetchall()
 
     if not jobs:
