@@ -23,12 +23,12 @@ def match_user():
        return
 
     print("\n  MATCH USER TO THE JOB ")
-    print("\navailable users:")
+    print("\navailable users: ")
     for user in users:
         print(f"ID: {user[0]} | NAME: {user[1]} | SKILLS: {user[2]}")
           
     try:
-        user_id = int(input("\nenter user ID"))
+        user_id = int(input("\nenter user ID: "))
     except:
         print(" invalid input ")
         conn.close()
