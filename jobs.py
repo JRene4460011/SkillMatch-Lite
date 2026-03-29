@@ -146,3 +146,57 @@ def delete_job():
     finally:
         cursor.close()
         conn.close()
+def update_job():
+    print("
+UPDATE JOB")
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute("SELECT id, title, required_skills FROM jobs")
+        jobs = cursor.fetchall()
+
+        if not jobs:
+            print("No jobs found.")
+            return
+
+        print("-" * 40)
+        for job in jobs:
+            print(f"  ID: {job[0]} | TITLE: {job[1]} | SKILLS: {job[2]}")
+        print("-" * 40)
+
+        try:
+            job_id = int(input("Enter job ID to update: "))
+        except ValueError:
+            print("Invalid ID. Please enter a number.")
+            return
+
+        cursor.execute("SELECT id, title, required_skills FROM jobs WHERE id = %s", (job_id,))
+        job = cursor.fetchone()
+
+        if not job:
+            print(f"No job found with ID {job_id}.")
+            return
+
+        print(f"
+UPDATING JOB: {job[1]}")
+        new_title = input(f"Enter new title (leave blank to keep '{job[1]}'): ").strip()
+        new_skills = input(f"Enter new skills (leave blank to keep '{job[2]}'): ").strip()
+
+        if not new_title and not new_skills:
+            return
+
+        updated_title = new_title if new_title else job[1]
+        updated_skills = new_skills if new_skills else job[2]
+
+        cursor.execute(
+            "UPDATE jobs SET title = %s, required_skills = %s WHERE id = %s",
+            (updated_title, updated_skills, job_id)
+        )
+        conn.commit()
+    except Exception as e:
+        print(f"Something went wrong: {e}")
+    finally:
+        cursor.close()
+        conn.close()
