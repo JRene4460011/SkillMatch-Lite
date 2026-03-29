@@ -47,10 +47,10 @@ def setup_with_retry():
 # Keeps asking for input until the user enters a valid number from 1 to 6
 def get_valid_choice():
     while True:
-        choice = input("\nEnter your choice (1-6): ").strip()
-        if choice in ["1", "2", "3", "4", "5", "6"]:
+        choice = input("\nEnter your choice (1-10): ").strip()
+        if choice in [str(i) for i in range(1, 11)]:
             return choice
-        print("Invalid. Please enter a number from 1 to 6.")
+        print("Invalid. Please enter a number from 1 to 10.")
 
 # Runs the app — sets up the database then starts the main menu loop
 def main():
@@ -64,31 +64,47 @@ def main():
 
         choice = get_valid_choice()
 
-        if choice == "1":
+            if choice == "1":
             while True:
                 add_user()
                 if input("\nAdd another user? (y/n): ").strip().lower() != "y":
                     break
 
         elif choice == "2":
+            view_users()
+            input("\nPress Enter to continue...")
+
+        elif choice == "3":
+            update_user()
+            input("\nPress Enter to continue...")
+
+        elif choice == "4":
+            delete_user()
+            input("\nPress Enter to continue...")
+
+        elif choice == "5":
             while True:
                 add_job()
                 if input("\nAdd another job? (y/n): ").strip().lower() != "y":
                     break
 
-        elif choice == "3":
-            view_users()
-            input("\nPress Enter to continue...")
-
-        elif choice == "4":
+        elif choice == "6":
             view_jobs()
             input("\nPress Enter to continue...")
 
-        elif choice == "5":
+        elif choice == "7":
+            update_job()
+            input("\nPress Enter to continue...")
+
+        elif choice == "8":
+            delete_job()
+            input("\nPress Enter to continue...")
+
+        elif choice == "9":
             match_user()
             input("\nPress Enter to continue...")
 
-        elif choice == "6":
+        elif choice == "10":
             if input("\nAre you sure you want to exit? (y/n): ").strip().lower() == "y":
                 print("\nThank you for using SkillMatch Lite! Good luck!")
                 sys.exit(0)
