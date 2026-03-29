@@ -51,3 +51,57 @@ def view_users():
     finally:
         cursor.close()
         conn.close()
+
+
+def update_user():
+    print("
+  UPDATE USER  ")
+
+    conn = mysql.connector.connect(
+        host="",
+        user="",
+        password="",
+        database="skillmatch"
+    )
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT id, name, skills FROM users")
+    users = cursor.fetchall()
+
+    if not users:
+        conn.close()
+        return
+
+    print("
+ available users:")
+    for user in users:
+        print(f"  ID: {user[0]} | NAME: {user[1]} | SKILLS: {user[2]}")
+
+    try:
+        user_id = int(input("
+ enter user ID to update: "))
+    except ValueError:
+        conn.close()
+        return
+
+    cursor.execute("SELECT id, name, skills FROM users WHERE id = %s", (user_id,))
+    user = cursor.fetchone()
+
+    if not user:
+        conn.close()
+        return
+
+    print(f"
+ updating user: {user[1]}")
+    new_name = input(f" enter new name (leave blank to keep '{user[1]}'): ").strip()
+    new_skills = input(f" enter new skills (leave blank to keep '{user[2]}'): ").strip()
+
+    updated_name = new_name if new_name else user[1]
+    updated_skills = new_skills if new_skills else user[2]
+
+    cursor.execute(
+        "UPDATE users SET name = %s, skills = %s WHERE id = %s",
+        (updated_name, updated_skills, user_id)
+    )
+    conn.commit()
+    conn.close()
