@@ -1,41 +1,55 @@
 # the Skill_Match-Lite
 
 ## the Project Overview
-Skill_Match-Lite is the application we built as team that work as a commandline user friendly, and the main role is to match the skills of the user to the jobs available.it helps peole seeking the jobs to find the real position of the job that really match their skills and shows when ever you have no skills but you want position it can help to start studying according to what you want.
+Skill_Match-Lite is the command-line, user-friendly application we built as a team. The main role is to match users with jobs that require the same skills they have. Therefore, it helps people seeking jobs to find the right jobs that match their skills.
 
 ## GCGO Alignment
 
-The project we are working on supports  "companies to grow economically because they have workers who fit the skills. It helps to find jobs available.
+As a team, our shared GCGO of interest is Job Creation. We believe that Skill_Match-Lite contributes to and aligns with this GCGO, given its potential to help young professionals find jobs that demand their skills. We believe that this will definitely reduce the unemployment rate!
 
 ## Technologies Used
 
 Technology and Purpose 
+
+
  Python:  Programming language 
+ 
  MySQL  Database for storing jobs and users
- WampServer  for Local MySQL server 
-VS Code a code editor 
+ 
+ WampServer or XAMP  for a local MySQL server 
+ 
+ VS Code is a code editor 
 
 ## Features
 
 Feature and  Descriptions
 
- Add User  is used to add a user, and skills have
-Add Job is used to add a job with the skills required to fit the job
- View Users is used to show or display all the users who are registered
-View Jobs  used to show all the available jobs
-|Match Skills  is used to match or compare the skills users have to the jobs available
+1.  Add User: Used to add a user and the skills they have.
+2.  View Users: Used to show or display all the users who are registered.
+3.  Update User
+4.  Delete User
+5.  Add Job: Used to add a job with the skills required to fit the job.
+6.  View Jobs: Used to show all the available jobs.
+7.  Update Job: Used to update job information.
+8.  Delete Job: Used to delete a job.
+9.  Match Skills: Used to match or compare the skills users have to the jobs available.
+10. Exit
 
 ## Installation
 
 ### 2. Install the MySQL Connector to have a database
 
-In the terminal write these commands
-pip install mysql-connector-python
+In the terminal, write these commands
 
-connect the database after 
+=> pip install mysql-connector-python
 
-cloning the repository.
+   connect the database after 
 
-steps:       1.  git clone https://github.com/JRene4460011/SkillMatch-Lite.git
-                2 . cd SkillMatch-Lite
-                3. python main.py
+  * cloning the repository.
+
+steps:          
+    1. git clone https://github.com/JRene4460011/SkillMatch-Lite.git
+    
+    2 cd SkillMatch-Lite
+    
+    3. python main.py

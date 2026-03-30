@@ -147,8 +147,7 @@ def delete_job():
         cursor.close()
         conn.close()
 def update_job():
-    print("
-UPDATE JOB")
+    print("\nUPDATE JOB")
 
     conn = get_connection()
     cursor = conn.cursor()
@@ -179,8 +178,7 @@ UPDATE JOB")
             print(f"No job found with ID {job_id}.")
             return
 
-        print(f"
-UPDATING JOB: {job[1]}")
+        print(f"\nUPDATING JOB: {job[1]}")
         new_title = input(f"Enter new title (leave blank to keep '{job[1]}'): ").strip()
         new_skills = input(f"Enter new skills (leave blank to keep '{job[2]}'): ").strip()
 

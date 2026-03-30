@@ -142,8 +142,7 @@ def delete_user():
         cursor.close()
         conn.close()
 def update_user():
-    print("
-UPDATE USER")
+    print("\nUPDATE USER")
 
     conn = get_connection()
     cursor = conn.cursor()
@@ -174,8 +173,7 @@ UPDATE USER")
             print(f"No user found with ID {user_id}.")
             return
 
-        print(f"
-UPDATING USER: {user[1]}")
+        print(f"\nUPDATING USER: {user[1]}")
         new_name = input(f"Enter new name (leave blank to keep '{user[1]}'): ").strip()
         new_skills = input(f"Enter new skills (leave blank to keep '{user[2]}'): ").strip()
 

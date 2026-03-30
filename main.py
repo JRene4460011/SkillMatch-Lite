@@ -64,7 +64,7 @@ def main():
 
         choice = get_valid_choice()
 
-            if choice == "1":
+        if choice == "1":
             while True:
                 add_user()
                 if input("\nAdd another user? (y/n): ").strip().lower() != "y":
