@@ -136,6 +136,11 @@ def update_user():
         new_name = input(f"Enter new name (leave blank to keep '{user[1]}'): ").strip()
         new_skills = input(f"Enter new skills (leave blank to keep '{user[2]}'): ").strip()
 
+        # We do not accept numbers only for the name and skills.
+        if new_name.isdigit() or new_skills.isdigit():
+            print("New Name and skills cannot be numbers only.")
+            return
+
         if not new_name and not new_skills:
             return
 

@@ -140,6 +140,11 @@ def update_job():
         print(f"\nUPDATING JOB: {job[1]}")
         new_title = input(f"Enter new title (leave blank to keep '{job[1]}'): ").strip()
         new_skills = input(f"Enter new skills (leave blank to keep '{job[2]}'): ").strip()
+        
+        # We do not accept numbers only for the title and skills.
+        if new_title.isdigit() or new_skills.isdigit():
+            print("New Title and skills cannot be numbers only.")
+            return
 
         if not new_title and not new_skills:
             return
