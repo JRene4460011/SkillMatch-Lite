@@ -89,6 +89,9 @@ def delete_job():
 
         # Confirm before deleting
         confirm = input(f"Are you sure you want to delete '{job[1]}'? (yes/no): ").strip().lower()
+        if confirm != "yes" and confirm != "no":
+            print("The acceptable values are 'yes' or 'no'.")
+            return
         if confirm != "yes":
             print("Deletion cancelled.")
             return
