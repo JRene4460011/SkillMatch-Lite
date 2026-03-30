@@ -56,17 +56,12 @@ def view_jobs():
         conn.close()
 
 def update_job():
-    print("UPDATE JOB")
+    print("\nUPDATE JOB")
 
-    conn = mysql.connector.connect(
-        host="",
-        user="",
-        password="",
-        database="skillmatch"
-    )
+    conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT id, title, skills FROM jobs")
+    cursor.execute("SELECT id, title, required_skills FROM jobs")
     jobs = cursor.fetchall()
 
     if not jobs:
@@ -83,7 +78,7 @@ def update_job():
         conn.close()
         return
 
-    cursor.execute("SELECT id, title, skills FROM jobs WHERE id = %s", (job_id,))
+    cursor.execute("SELECT id, title, required_skills FROM jobs WHERE id = %s", (job_id,))
     job = cursor.fetchone()
 
     if not job:
@@ -98,7 +93,7 @@ def update_job():
     updated_skills = new_skills if new_skills else job[2]
 
     cursor.execute(
-        "UPDATE jobs SET title = %s, skills = %s WHERE id = %s",
+        "UPDATE jobs SET title = %s, required_skills = %s WHERE id = %s",
         (updated_title, updated_skills, job_id)
     )
     conn.commit()
