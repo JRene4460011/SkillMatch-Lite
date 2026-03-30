@@ -10,6 +10,11 @@ def add_job():
         print("Title and required skills cannot be empty.")
         return
 
+    # We do not accept numbers only for the job title and required skills.
+    if title.strip().isdigit() or required_skills.strip().isdigit():
+        print("Job title and skills cannot be numbers only.")
+        return
+
     conn = get_connection()
     cursor = conn.cursor()
 
