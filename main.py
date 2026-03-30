@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import database
 from users import (add_user, view_users, update_user, delete_user)
 from jobs import (add_job, view_jobs, update_job, delete_job)
@@ -67,7 +68,12 @@ def main():
         if choice == "1":
             while True:
                 add_user()
-                if input("\nAdd another user? (y/n): ").strip().lower() != "y":
+                anotheruser = input("\nAdd another user? (y/n): ").strip().lower()
+                if anotheruser not in ["y", "n"]:
+                    print("The acceptable values are 'y' or 'n'.")
+                    time.sleep(3)
+                    break
+                if anotheruser != "y":
                     break
 
         elif choice == "2":
@@ -85,8 +91,16 @@ def main():
         elif choice == "5":
             while True:
                 add_job()
-                if input("\nAdd another job? (y/n): ").strip().lower() != "y":
+                anotherjob = input("\nAdd another job? (y/n): ").strip().lower()
+                if anotherjob not in ["y", "n"]:
+                    print("The acceptable values are 'y' or 'n'.")
+                    time.sleep(3)
                     break
+                if anotherjob != "y":
+                    break
+
+                # if input("\nAdd another job? (y/n): ").strip().lower() != "y":
+                #     break
 
         elif choice == "6":
             view_jobs()
