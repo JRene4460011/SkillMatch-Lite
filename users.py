@@ -11,6 +11,11 @@ def add_user():
         print("Name and skills cannot be empty.")
         return
 
+    # We do not accept numbers only for the name and skills.
+    if name.strip().isdigit() or skills.strip().isdigit():
+        print("Name and skills cannot be numbers only.")
+        return
+
     # Use the shared connection from database.py instead of repeating connection code
     conn = get_connection()
     cursor = conn.cursor()
